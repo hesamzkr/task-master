@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use \App\Models\User;
 
 class DatabaseSeeder extends Seeder
 {
@@ -12,11 +13,31 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
+        \App\Models\User::factory(10)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        $board_names = ['Development', 'Marketing', 'Design', 'Finance'];
+        \App\Models\Board::factory(count($board_names))->create([
+            'name' => function () use ($board_names) {
+                return array_shift($board_names);
+            },
+        ]);
+
+        $team_names = ['Frontend', 'Backend', 'Research', 'UI/UX'];
+        \App\Models\Team::factory(4)->create([
+            'name' => function () use ($team_names) {
+                return array_shift($team_names);
+            },
+        ]);
+
+        $tasks = \App\Models\Task::factory(10)->create([
+            'board_id' => rand(1, 4),
+        ]);
+
+        User::create([
+            'name' => 'Joe',
+            'email' => 'joe@gmail.com',
+            'password' => '$2y$12$smPxeMWUJ7bCkVl6d.iz.ukXrWXoGkdhlQ3cXq/YCoUgyfHwlF41m',
+            'is_admin' => true,
+        ]);
     }
 }
