@@ -29,7 +29,7 @@ class DatabaseSeeder extends Seeder
             },
         ]);
 
-        $tasks = \App\Models\Task::factory(10)->create([
+        \App\Models\Task::factory(10)->create([
             'board_id' => rand(1, 4),
         ]);
 
