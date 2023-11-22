@@ -17,14 +17,14 @@ class DatabaseSeeder extends Seeder
 
         $board_names = ['Development', 'Marketing', 'Design', 'Finance'];
         \App\Models\Board::factory(count($board_names))->create([
-            'name' => function () use ($board_names) {
+            'name' => function () use (&$board_names) {
                 return array_shift($board_names);
             },
         ]);
 
         $team_names = ['Frontend', 'Backend', 'Research', 'UI/UX'];
-        \App\Models\Team::factory(4)->create([
-            'name' => function () use ($team_names) {
+        \App\Models\Team::factory(count($team_names))->create([
+            'name' => function () use (&$team_names) {
                 return array_shift($team_names);
             },
         ]);

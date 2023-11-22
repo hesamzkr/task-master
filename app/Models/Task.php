@@ -25,4 +25,11 @@ class Task extends Model
     {
         return $this->morphedByMany(Team::class, 'assignable');
     }
+
+    public function assignees()
+    {
+        $users = $this->users;
+        $teams = $this->teams;
+        return $users->merge($teams);
+    }
 }
