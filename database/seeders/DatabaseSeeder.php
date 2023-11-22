@@ -37,6 +37,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Joe',
             'email' => 'joe@gmail.com',
             'password' => '$2y$12$smPxeMWUJ7bCkVl6d.iz.ukXrWXoGkdhlQ3cXq/YCoUgyfHwlF41m',
+            'email_verified_at' => now(),
             'is_admin' => true,
         ]);
     }
