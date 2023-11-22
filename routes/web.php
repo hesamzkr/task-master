@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BoardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
@@ -28,5 +29,6 @@ Route::get('/dashboard', function () {
 
 // Admin User routes
 Route::name('admin.')->middleware(['auth', 'is.admin'])->group(function () {
-    // Route::resource('/admin/categories', \App\Http\Controllers\AdminCategoryController::class);
+    Route::resource('/admin/teams', TeamController::class);
+    Route::resource('/admin/boards', BoardController::class);
 });
