@@ -21,11 +21,9 @@
 
     <x-navigation-bar />
 
-    <div class="p-4 sm:ml-64">
-      <div class="flex justify-center items-center">
-        {{ $slot }}
-      </div>
-    </div>
+    <main class="p-4 sm:ml-64">
+      {{ $slot }}
+    </main>
 
   </div>
 </body>
