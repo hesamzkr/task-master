@@ -18,7 +18,9 @@ class TaskController extends Controller
             return $team->tasks;
         })->collapse();
 
-        $tasks = $tasks->merge($team_tasks);
+        $tasks = $tasks->merge($team_tasks)->filter(function ($task) {
+            return $task->status != 'completed';
+        });
 
         return view('dashboard.inbox', [
             'tasks' => $tasks

@@ -21,8 +21,5 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        View::composer('components.navigation-bar', function ($view) {
-            $view->with('tasks_number', Auth::user()->allTasks()->count());
-        });
     }
 }
