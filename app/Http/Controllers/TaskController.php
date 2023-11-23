@@ -14,6 +14,12 @@ class TaskController extends Controller
     {
         $tasks = auth()->user()->tasks;
 
+        $team_tasks = auth()->user()->teams->map(function ($team) {
+            return $team->tasks;
+        })->collapse();
+
+        $tasks = $tasks->merge($team_tasks);
+
         return view('dashboard.inbox', [
             'tasks' => $tasks
         ]);

@@ -42,4 +42,16 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Team::class);
     }
+
+    public function allTasks()
+    {
+        $tasks = $this->tasks;
+
+        $team_tasks = $this->teams->map(function ($team) {
+            return $team->tasks;
+        })->collapse();
+
+        $tasks = $tasks->merge($team_tasks);
+        return $tasks;
+    }
 }
