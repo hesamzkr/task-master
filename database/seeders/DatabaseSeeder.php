@@ -30,7 +30,9 @@ class DatabaseSeeder extends Seeder
         ]);
 
         \App\Models\Task::factory(10)->create([
-            'board_id' => rand(1, 4),
+            'board_id' => function () {
+                return rand(1, 4);
+            },
         ]);
 
         User::create([

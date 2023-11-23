@@ -16,7 +16,9 @@ return new class extends Migration
             $table->foreignId('board_id');
             $table->string('name');
             $table->string('status');
-            $table->dateTime('deadline');
+            $table->date('deadline')->nullable();
+
+            $table->softDeletes();
             $table->timestamps();
         });
     }
