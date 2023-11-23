@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminTeamController;
 use App\Http\Controllers\BoardController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\ProfileController;
@@ -25,18 +26,19 @@ Route::middleware('auth')->group(function () {
             return view('dashboard');
         });
 
-        Route::get('/notifications', function () {
-            return view('dashboard');
-        })->name('notification.index');
+        Route::get('/inbox', [TaskController::class, 'index'])->name('inbox.index');
 
         Route::get('/board/{board}', [BoardController::class, 'show'])->name('board.show');
 
-        Route::get('/team', function () {
-            return view('dashboard');
-        })->name('team.index');
+        Route::get('/teams', [TeamController::class, 'index'])->name('team.index');
     });
 
     Route::get('/board/{board}/task/create', [TaskController::class, 'create'])->name('task.create');
+    Route::post('/board/{board}/task', [TaskController::class, 'store'])->name('task.store');
+
+    Route::get('/task/{task}/edit', [TaskController::class, 'edit'])->name('task.edit');
+    Route::put('/task/{task}', [TaskController::class, 'update'])->name('task.update');
+    Route::delete('/task/{task}', [TaskController::class, 'destroy'])->name('task.destroy');
 });
 
 
@@ -46,5 +48,5 @@ Route::middleware('auth')->group(function () {
 
 // Admin User routes
 Route::name('admin.')->middleware(['auth', 'is.admin'])->group(function () {
-    Route::resource('/admin/teams', TeamController::class);
+    Route::resource('/admin/teams', AdminTeamController::class);
 });
