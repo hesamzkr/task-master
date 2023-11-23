@@ -11,14 +11,14 @@ class TeamController extends Controller
     {
         $teams = Team::all();
 
-        return view('admin.teams.index', [
+        return view('admin.team.index', [
             'teams' => $teams,
         ]);
     }
 
     public function create()
     {
-        return view('admin.teams.create');
+        return view('admin.team.create');
     }
 
     public function store(Request $request)
@@ -32,19 +32,19 @@ class TeamController extends Controller
         ]);
 
 
-        return redirect()->route('admin.teams.show', $team->id);
+        return redirect()->route('admin.team.show', $team->id);
     }
 
     public function show(Team $team)
     {
-        return view('admin.teams.show', [
+        return view('admin.team.show', [
             'team' => $team,
         ]);
     }
 
     public function edit(Team $team)
     {
-        return view('admin.teams.edit', [
+        return view('admin.team.edit', [
             'team' => $team,
         ]);
     }
@@ -59,13 +59,13 @@ class TeamController extends Controller
             'name' => $request->name,
         ]);
 
-        return redirect()->route('admin.teams.show', $team->id);
+        return redirect()->route('admin.team.show', $team->id);
     }
 
     public function destroy(Team $team)
     {
         $team->delete();
 
-        return redirect()->route('admin.teams.index');
+        return redirect()->route('admin.team.index');
     }
 }
