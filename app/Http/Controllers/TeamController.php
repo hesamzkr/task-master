@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Team;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class TeamController extends Controller
@@ -18,7 +19,10 @@ class TeamController extends Controller
 
     public function create()
     {
-        return view('admin.team.create');
+        $users = User::all();
+        return view('admin.team.create', [
+            'users' => $users
+        ]);
     }
 
     public function store(Request $request)
@@ -44,8 +48,11 @@ class TeamController extends Controller
 
     public function edit(Team $team)
     {
+        $users = User::all();
+
         return view('admin.team.edit', [
             'team' => $team,
+            'users' => $users
         ]);
     }
 

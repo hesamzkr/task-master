@@ -29,17 +29,14 @@ Route::middleware('auth')->group(function () {
             return view('dashboard');
         })->name('notification.index');
 
-        Route::get('/board/{id}', [BoardController::class, 'show'])->name('board.show');
+        Route::get('/board/{board}', [BoardController::class, 'show'])->name('board.show');
 
         Route::get('/team', function () {
             return view('dashboard');
         })->name('team.index');
     });
 
-    Route::get('/board/{board_id}/task/create', [TaskController::class, 'create'])->name('task.create');
-    // Route::prefix('/task')->name('task.')->group(function () {
-    //     Route::get('/create/')
-    // });
+    Route::get('/board/{board}/task/create', [TaskController::class, 'create'])->name('task.create');
 });
 
 
