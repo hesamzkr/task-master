@@ -9,13 +9,15 @@ use Illuminate\View\Component;
 class CrudInput extends Component
 {
     public string $value;
+    public string $name;
 
     /**
      * Create a new component instance.
      */
-    public function __construct(string $value = '')
+    public function __construct(string $value = '', string $name)
     {
         $this->value = $value;
+        $this->name = $name;
     }
 
     /**

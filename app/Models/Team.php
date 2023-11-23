@@ -12,6 +12,7 @@ class Team extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
 
     public function tasks(): MorphToMany
     {
@@ -21,5 +22,12 @@ class Team extends Model
     public function users(): BelongsToMany
     {
         return $this->belongsToMany(User::class);
+    }
+
+    public function uncompletedTasks()
+    {
+        return $this->tasks->filter(function ($task) {
+            return $task->status != 'completed';
+        })->count();
     }
 }
