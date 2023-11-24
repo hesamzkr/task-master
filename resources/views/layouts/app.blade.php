@@ -27,7 +27,7 @@
       {{ $slot }}
     </main>
 
-    <div class="absolute right-3 bottom-1"><x-application-logo /></div>
+    <div class="fixed right-3 bottom-1"><x-application-logo /></div>
   </div>
 </body>
 
