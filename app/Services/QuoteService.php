@@ -1,8 +1,10 @@
 <?php
 
+namespace App\Services;
+
 use Illuminate\Support\Facades\Http;
 
-class WeatherService
+class QuoteService
 {
     private string $endpoint;
 
@@ -16,10 +18,10 @@ class WeatherService
     }
 
 
-    public function getQuote(): object
+    public function getQuote(string $category = 'computers'): array
     {
         $response = Http::acceptJson()->withHeaders(['X-Api-Key' => $this->api_key])->get($this->endpoint, [
-            'category' => 'computers'
+            'category' => $category
         ]);
         return json_decode($response->body());
     }

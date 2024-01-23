@@ -95,5 +95,11 @@
         </li>
       @endif
     </ul>
+
+    <livewire:quote />
   </div>
+
+
+
+
 </aside>
