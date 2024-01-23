@@ -21,6 +21,10 @@ class Task extends Model
         'completed',
     ];
 
+    protected $casts = [
+        'deadline' => 'datetime',
+    ];
+
     public function board(): BelongsTo
     {
         return $this->belongsTo(Board::class);
