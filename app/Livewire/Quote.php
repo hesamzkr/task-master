@@ -19,7 +19,9 @@ class Quote extends Component
 
     public function mount()
     {
-        $this->category = $this->categories[0];
+        session()->has('quote_category')
+            ? $this->category = session()->get('quote_category')
+            : $this->category = $this->categories[0];
         $this->loadQuote();
     }
 
@@ -38,6 +40,7 @@ class Quote extends Component
 
     public function updatedCategory()
     {
+        session()->put('quote_category', $this->category);
         $this->loadQuote();
     }
 }

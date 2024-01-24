@@ -15,7 +15,7 @@ class QuoteService
         $this->api_key = config('services.quote.api_key');
     }
 
-    public function getQuote(string $category = 'computers'): array
+    public function getQuote(string $category): array
     {
         $response = Http::acceptJson()->withHeaders(['X-Api-Key' => $this->api_key])->get($this->endpoint, [
             'category' => $category
