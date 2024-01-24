@@ -7,12 +7,19 @@ use App\Services\QuoteService;
 
 class Quote extends Component
 {
-    public string $category = 'computers';
+    public array $categories = [
+        'computers',
+        'funny',
+        'death',
+        'success'
+    ];
+    public string $category;
     public string $author;
     public string $quote;
 
     public function mount()
     {
+        $this->category = $this->categories[0];
         $this->loadQuote();
     }
 
@@ -22,8 +29,6 @@ class Quote extends Component
         $response = $quote_service->getQuote($this->category)[0];
         $this->author = $response->author;
         $this->quote = $response->quote;
-        // $this->author = "Bill Laswell";
-        // $this->quote = "Computers and electronic music are not the opposite of the warm human music. It's exactly the same.";
     }
 
     public function render()
@@ -31,11 +36,8 @@ class Quote extends Component
         return view('livewire.quote');
     }
 
-
-
-
-    public function setCategory()
+    public function updatedCategory()
     {
-        $this->category = '';
+        $this->loadQuote();
     }
 }
