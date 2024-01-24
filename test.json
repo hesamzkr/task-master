@@ -1,0 +1,22 @@
+{
+    "data": [
+        {
+            "id": 1,
+            "task": "Ut hic nihil omnis voluptatem id culpa aliquid.",
+            "status": "completed",
+            "board": {
+                "name": "Finance"
+            },
+            "deadline": "2024-01-26",
+            "assigned_users": [],
+            "assigned_teams": []
+        }
+        // ...
+    ],
+    "links": {
+        "first": "http://localhost:8000/api/task?page=1",
+        "last": "http://localhost:8000/api/task?page=4",
+        "prev": null,
+        "next": "http://localhost:8000/api/task?page=2"
+    }
+}

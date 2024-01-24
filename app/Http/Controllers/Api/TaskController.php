@@ -30,7 +30,17 @@ class TaskController extends Controller
 
     public function store(TaskApiRequest $request)
     {
-        $task = Task::create($request->all())->save();
+        $task = Task::create([
+            'name' => $request->task,
+            'status' => $request->status,
+            'deadline' => $request->deadline,
+            'board_id' => $request->board_id,
+        ]);
+
+        $task->users()->attach($request->assigned_users);
+        $task->teams()->attach($request->assigned_teams);
+
+        $task->save();
 
         return new TaskResource($task);
     }

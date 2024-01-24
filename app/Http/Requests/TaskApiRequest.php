@@ -15,7 +15,7 @@ class TaskApiRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'min:3', 'max:20'],
+            'task' => ['required', 'min:3', 'max:20'],
             'status' => ['required', 'in:open,in progress,completed']
         ];
     }

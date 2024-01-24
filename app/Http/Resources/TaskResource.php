@@ -16,6 +16,8 @@ class TaskResource extends JsonResource
             'status' => $this->status,
             'board' => new BoardResource($this->board),
             'deadline' => $this->deadline?->format('Y-m-d') ?? 'No deadline',
+            'assigned_users' => $this->users,
+            'assigned_teams' => $this->teams
         ];
     }
 }
